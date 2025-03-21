@@ -213,6 +213,11 @@ public class Flight extends FlightDistance {
         return distanceString;
     }
 
+
+    public void displayMeasurementInstructions() {
+        MessageDisplays.displayMeasurementInstructions();
+    }
+
     private double degreeToRadian(double deg) {
         return (deg * Math.PI / 180.0);
     }
