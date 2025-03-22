@@ -1,7 +1,9 @@
 import java.util.Random;
 
 public class RandomGenerator {
-
+     public final int cityIndex = 0 ;
+     public final int longitudeIndex = 1 ;
+     public final int latitudeIndex = 2 ;
     //        ************************************************************ Fields ************************************************************
 
     private String randomNum;
@@ -43,9 +45,9 @@ public class RandomGenerator {
         Random rand = new Random();
         int randomCity1 = rand.nextInt(destinations.length);
         int randomCity2 = rand.nextInt(destinations.length);
-        String fromWhichCity = destinations[randomCity1][0];
-        String fromWhichCityLat = destinations[randomCity1][1];
-        String fromWhichCityLong = destinations[randomCity1][2];
+        String fromWhichCity = destinations[randomCity1][cityIndex];
+        String fromWhichCityLat = destinations[randomCity1][longitudeIndex];
+        String fromWhichCityLong = destinations[randomCity1][latitudeIndex];
         while (randomCity2 == randomCity1) {
             randomCity2 = rand.nextInt(destinations.length);
         }
