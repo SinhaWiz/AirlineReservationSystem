@@ -59,13 +59,6 @@ public class FlightReservation implements DisplayClass {
             System.out.printf("\n %50s You've booked %d tickets for Flight \"%5s\"...", "", numOfTickets, flightNo.toUpperCase());
         }
     }
-
-    /**
-     * Cancels the flight for a particular user and return/add the numOfTickets back to
-     * the main flight scheduler.
-     *
-     * @param userID    ID of the user for whom the flight is to be cancelled
-     */
     void cancelFlight(String userID) {
         String flightNum = "";
         Scanner read = new Scanner(System.in);
@@ -151,7 +144,6 @@ public class FlightReservation implements DisplayClass {
         }
     }
 
-    /*toString() Method for displaying number of flights registered by single user...*/
     public String toString(int serialNum, Flight flights, Customer customer) {
         return String.format("| %-5d| %-41s | %-9s | \t%-9d | %-21s | %-22s | %-10s  |   %-6sHrs |  %-4s  | %-10s |", serialNum, flights.getFlightSchedule(), flights.getFlightNumber(), customer.numOfTicketsBookedByUser.get(serialNum - 1), flights.getFromWhichCity(), flights.getToWhichCity(), flights.fetchArrivalTime(), flights.getFlightTime(), flights.getGate(), flightStatus(flights));
     }

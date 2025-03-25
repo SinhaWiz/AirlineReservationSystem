@@ -33,10 +33,8 @@ public class FlightManager {
     public static void displayFlightSchedule() {
         Iterator<Flight> flightIterator = getFlights().iterator();
         System.out.println();
-        System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+------------------------+\n");
-        System.out.printf("| Num  | FLIGHT SCHEDULE\t\t\t   | FLIGHT NO | Available Seats  | \tFROM ====>>       | \t====>> TO\t   | \t    ARRIVAL TIME       | FLIGHT TIME |  GATE  |   DISTANCE(MILES/KMS)  |%n");
-        System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+------------------------+\n");
         int i = 0;
+        MessageDisplays.flightScheduleHead();
         while (flightIterator.hasNext()) {
             i++;
             Flight f1 = flightIterator.next();
