@@ -136,15 +136,20 @@ public class Flight extends FlightDistance {
             minutes -= 60;
             hours++;
         }
-        if (hours <= 9 && Integer.toString(minutes).length() == 1) {
+        boolean option1 = hours <= 9 && Integer.toString(minutes).length() == 1;
+        boolean option2 = hours <= 9 && Integer.toString(minutes).length() > 1;
+        boolean option3 = hours > 9 && Integer.toString(minutes).length() == 1;
+        if (option1) {
             return String.format("0%s:%s0", hours, minutes);
-        } else if (hours <= 9 && Integer.toString(minutes).length() > 1) {
-            return String.format("0%s:%s", hours, minutes);
-        } else if (hours > 9 && Integer.toString(minutes).length() == 1) {
-            return String.format("%s:%s0", hours, minutes);
-        } else {
-            return String.format("%s:%s", hours, minutes);
         }
+        if (option2) {
+            return String.format("0%s:%s", hours, minutes);
+        }
+        if (option3) {
+            return String.format("%s:%s0", hours, minutes);
+        }
+            return String.format("%s:%s", hours, minutes);
+
     }
 
     /**
@@ -156,15 +161,11 @@ public class Flight extends FlightDistance {
         /*These lines convert the String of flightSchedule to LocalDateTIme and add the arrivalTime to it....*/
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy, HH:mm a ");
         LocalDateTime departureDateTime = LocalDateTime.parse(flightSchedule, formatter);
-
         /*Getting the Flight Time, plane was in air*/
         String[] flightTime = getFlightTime().split(":");
         int hours = Integer.parseInt(flightTime[0]);
         int minutes = Integer.parseInt(flightTime[1]);
-
-
         LocalDateTime arrivalTime;
-
         arrivalTime = departureDateTime.plusHours(hours).plusMinutes(minutes);
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("EE, dd-MM-yyyy HH:mm a");
         return arrivalTime.format(formatter1);
