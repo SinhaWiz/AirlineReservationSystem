@@ -3,16 +3,6 @@ import java.util.*;
 public class CustomerManager {
     private static final List<Customer> customers = new ArrayList<>();
 
-    public static void addCustomer(String name, String email, String password, String phone, String address, int age) {
-        Scanner read = new Scanner(System.in);
-        while (!isEmailUnique(email)) {
-            System.out.println("ERROR!!! User with the same email already exists... Use new email or login using the previous credentials....");
-            System.out.print("Enter your email address :\t");
-            email = read.nextLine();
-        }
-        Customer newCustomer = new Customer(name, email, password, phone, address, age);
-        customers.add(newCustomer);
-    }
 
     public static Customer getCustomerById(String userID) {
         for (Customer c : getCustomers()) {
@@ -71,7 +61,7 @@ public class CustomerManager {
 
     public static void displayAllCustomers(boolean showHeader) {
         if (showHeader) {
-            new Customer().displayHeader(); // Use a dummy instance for header
+            new Customer().displayHeader();
         }
         Iterator<Customer> iterator = customers.iterator();
         int i = 0;
@@ -94,4 +84,16 @@ public class CustomerManager {
     public static List<Customer> getCustomers() {
         return Collections.unmodifiableList(customers);
     }
+    public static void addCustomer(CustomerData data){
+        Scanner read = new Scanner(System.in);
+        while (!isEmailUnique(data.email)) {
+            System.out.println("ERROR!!! User with the same email already exists... Use new email or login using the previous credentials....");
+            System.out.print("Enter your email address :\t");
+            data.email = read.nextLine();
+        }
+        Customer newCustomer = new Customer(data.name, data.email, data.password, data.phone, data.address, data.age);
+        customers.add(newCustomer);
+    }
+
+
 }

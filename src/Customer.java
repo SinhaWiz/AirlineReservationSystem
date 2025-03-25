@@ -1,9 +1,5 @@
 import java.util.*;
-
 public class Customer {
-
-    // ************************************************************ Fields
-    // ************************************************************
     private final String userID;
     private String email;
     private String name;
@@ -14,11 +10,6 @@ public class Customer {
     public List<Flight> flightsRegisteredByUser;
     public List<Integer> numOfTicketsBookedByUser;
     public static final List<Customer> customerCollection = User.getCustomersCollection();
-
-    // ************************************************************
-    // Behaviours/Methods
-    // ************************************************************
-
     Customer() {
         this.userID = null;
         this.name = null;
@@ -28,18 +19,6 @@ public class Customer {
         this.address = null;
         this.age = 0;
     }
-
-    /**
-     * Registers new customer to the program. Obj of RandomGenerator(Composition) is
-     * being used to assign unique userID to the newly created customer.
-     *
-     * @param name     name of the customer
-     * @param email    customer's email
-     * @param password customer's account password
-     * @param phone    customer's phone-number
-     * @param address  customer's address
-     * @param age      customer's age
-     */
     Customer(String name, String email, String password, String phone, String address, int age) {
         RandomGenerator random = new RandomGenerator();
         random.randomIDGen();
@@ -61,7 +40,8 @@ public class Customer {
         String name = read.nextLine();
         System.out.print("Enter your email address :\t");
         String email = read.nextLine();
-        CustomerManager.addCustomer(name, email, password, phone, address, age);
+        CustomerData cdata = new CustomerData(name , email,password, phone, address, age);
+        CustomerManager.addCustomer(cdata);
     }
 
     public String toString(int i) {
