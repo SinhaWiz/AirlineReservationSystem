@@ -32,18 +32,7 @@ public class Customer {
         this.flightsRegisteredByUser = new ArrayList<>();
         this.numOfTicketsBookedByUser = new ArrayList<>();
     }
-
-    public void addNewCustomer() {
-        System.out.printf("\n\n\n%60s ++++++++++++++ Welcome to the Customer Registration Portal ++++++++++++++", "");
-        Scanner read = new Scanner(System.in);
-        System.out.print("\nEnter your name :\t");
-        String name = read.nextLine();
-        System.out.print("Enter your email address :\t");
-        String email = read.nextLine();
-        CustomerData cdata = new CustomerData(name , email,password, phone, address, age);
-        CustomerManager.addCustomer(cdata);
-    }
-
+    
     public String toString(int i) {
         return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "", i,
                 randomIDDisplay(userID), name, age, email, address, phone);
@@ -63,20 +52,8 @@ public class Customer {
     public void displayCustomersData(boolean showHeader) {
         CustomerManager.displayAllCustomers(showHeader);
     }
-
     void displayHeader() {
-        System.out.println();
-        System.out.printf(
-                "%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n",
-                "");
-        System.out.printf(
-                "%10s| SerialNum  |   UserID   | Passenger Names                  | Age     | EmailID\t\t       | Home Address\t\t\t     | Phone Number\t       |%n",
-                "");
-        System.out.printf(
-                "%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n",
-                "");
-        System.out.println();
-
+        MessageDisplays.displayHeader();
     }
     String randomIDDisplay(String randomID) {
         StringBuilder newString = new StringBuilder();
@@ -152,5 +129,10 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void addNewCustomer() {
+
+        CustomerManager.addCustomer(new CustomerData(null , null ,null ,null ,null,0));
     }
 }

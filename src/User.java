@@ -222,7 +222,20 @@ public class User {
         }
     }
     private static  void registerAsPassenger(Customer c1){
-        c1.addNewCustomer();
+        Scanner read = new Scanner(System.in);
+        System.out.print("\nEnter your name :\t");
+        String name = read.nextLine();
+        System.out.print("Enter your email address :\t");
+        String email = read.nextLine();
+        System.out.print("Enter your Password :\t");
+        String password = read.nextLine();
+        System.out.print("Enter your Phone number :\t");
+        String phone = read.nextLine();
+        System.out.print("Enter your address :\t");
+        String address = read.nextLine();
+        System.out.print("Enter your age :\t");
+        int age = read.nextInt();
+        CustomerManager.addCustomer(new CustomerData(name, email, password, phone, address, age));
     }
     private static  int registerAsAdmin( RolesAndPermissions r1,int countNumOfUsers){
         Scanner read = new Scanner(System.in);
@@ -240,6 +253,7 @@ public class User {
         adminUserNameAndPassword[countNumOfUsers][1] = password;
         return countNumOfUsers + 1;
     }
+
     public static List<Customer> getCustomersCollection() {
         return customersCollection;
     }

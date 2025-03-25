@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class FlightReservation implements DisplayClass {
     Flight flight = new Flight();
     int flightIndexInFlightList;
-
     void bookFlight(String flightNo, int numOfTickets, String userID) {
         Flight selectedFlight = findFlight(flightNo);
         if(selectedFlight == null) {

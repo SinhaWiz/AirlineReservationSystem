@@ -103,4 +103,17 @@ class MessageDisplays {
         System.out.println(
                 "\n***** Default Username && Password is root-root ***** Using Default Credentials will restrict you to just view the list of Passengers....\n");
     }
+    public static void displayHeader(){
+        System.out.println();
+        System.out.printf(
+                "%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n",
+                "");
+        System.out.printf(
+                "%10s| SerialNum  |   UserID   | Passenger Names                  | Age     | EmailID\t\t       | Home Address\t\t\t     | Phone Number\t       |%n",
+                "");
+        System.out.printf(
+                "%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n",
+                "");
+        System.out.println();
+    }
 }

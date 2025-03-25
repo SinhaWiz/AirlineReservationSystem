@@ -84,16 +84,28 @@ public class CustomerManager {
     public static List<Customer> getCustomers() {
         return Collections.unmodifiableList(customers);
     }
-    public static void addCustomer(CustomerData data){
+    public static void addCustomer(CustomerData customerData){
+        System.out.printf("\n\n\n%60s ++++++++++++++ Welcome to the Customer Registration Portal ++++++++++++++", "");
         Scanner read = new Scanner(System.in);
-        while (!isEmailUnique(data.email)) {
+        System.out.print("\nEnter your name :\t");
+        String name = read.nextLine();
+        System.out.print("Enter your email address :\t");
+        String email = read.nextLine();
+
+        while (!isEmailUnique(email)) {
             System.out.println("ERROR!!! User with the same email already exists... Use new email or login using the previous credentials....");
             System.out.print("Enter your email address :\t");
-            data.email = read.nextLine();
+            email = read.nextLine();
         }
-        Customer newCustomer = new Customer(data.name, data.email, data.password, data.phone, data.address, data.age);
+        System.out.print("Enter your Password :\t");
+        String password = read.nextLine();
+        System.out.print("Enter your Phone number :\t");
+        String phone = read.nextLine();
+        System.out.print("Enter your address :\t");
+        String address = read.nextLine();
+        System.out.print("Enter your age :\t");
+        int age = read.nextInt();
+        Customer newCustomer = new Customer(name, email, password, phone, address, age);
         customers.add(newCustomer);
     }
-
-
 }
