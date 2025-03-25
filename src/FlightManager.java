@@ -2,7 +2,7 @@ import java.util.*;
 
 public class FlightManager {
     private static final List<Flight> flights = new ArrayList<>();
-
+    Flight flight = new Flight();
     public static void generateFlightSchedule(int numOfFlights) {
         RandomGenerator r1 = new RandomGenerator();
         for (int i = 0; i < numOfFlights; i++) {
@@ -44,5 +44,13 @@ public class FlightManager {
     }
     public static List<Flight> getFlights() {
         return Collections.unmodifiableList(flights);
+    }
+    public Flight findFlight(String flightNo) {
+        for (Flight flight : flight.getFlightList()) {
+            if (flight.getFlightNumber().equalsIgnoreCase(flightNo)) {
+                return flight;
+            }
+        }
+        return null;
     }
 }

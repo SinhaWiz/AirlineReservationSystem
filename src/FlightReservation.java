@@ -31,10 +31,10 @@ public class FlightReservation implements DisplayClass {
             selectedFlight.addNewCustomerToFlight(customer);
         }
         if(isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser,selectedFlight) && flightIndex(flight.getFlightList(), flight) != -1) {
-            addNumberOfTicketsForNewFlight(customer, numOfTickets);
+            addNumberOfTicketsToAlreadyBookedFlight(customer, numOfTickets);
             customer.addExistingFlightToCustomerList(flightIndex(flight.getFlightList(), flight), numOfTickets);
         }
-        if(isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser,selectedFlight) && flightIndex(flight.getFlightList(), flight) != -1) {
+        if(isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser,selectedFlight) && flightIndex(flight.getFlightList(), flight) == -1) {
                 addNumberOfTicketsForNewFlight(customer, numOfTickets);
             }
         else {
