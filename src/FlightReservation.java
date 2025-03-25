@@ -14,7 +14,6 @@ public class FlightReservation implements DisplayClass {
     int flightIndexInFlightList;
 
     void bookFlight(String flightNo, int numOfTickets, String userID) {
-        boolean isFound = false;
         Flight selectedFlight = findFlight(flightNo);
         if(selectedFlight == null) {
             System.out.println("Invalid Flight Number...! No flight with the  ID \"" + flightNo + "\" was found...");
@@ -45,8 +44,8 @@ public class FlightReservation implements DisplayClass {
         Scanner read = new Scanner(System.in);
         int index = 0, ticketsToBeReturned;
         boolean isFound = false;
-        for (Customer customer : Customer.customerCollection) {
-            if (userID.equals(customer.getUserID())) {
+        Customer customer = CustomerManager.getCustomerById(userID);
+            if (customer != null) {
                 if (customer.getFlightsRegisteredByUser().size() != 0) {
                     System.out.printf("%50s %s Here is the list of all the Flights registered by you %s", " ", "++++++++++++++", "++++++++++++++");
                     displayFlightsRegisteredByOneUser(userID);
@@ -86,7 +85,7 @@ public class FlightReservation implements DisplayClass {
                     System.out.println("ERROR!!! Couldn't find Flight with ID \"" + flightNum.toUpperCase() + "\".....");
                 }
             }
-        }
+
     }
     private Flight findFlight(String flightNo) {
         for (Flight flight : flight.getFlightList()) {
