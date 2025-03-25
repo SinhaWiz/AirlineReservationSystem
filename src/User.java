@@ -9,21 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class User {
-
-    // ************************************************************ Fields
-    // ************************************************************
-
-    /*
-     * 2D Array to store admin credentials. Default credentials are stored on [0][0]
-     * index. Max num of admins can be 10....
-     */
     static String[][] adminUserNameAndPassword = new String[10][2];
     private static List<Customer> customersCollection = new ArrayList<>();
-
-    // ************************************************************
-    // Behaviours/Methods
-    // ************************************************************
-
     public static void main(String[] args) {
         int countNumOfUsers = 1;
         RolesAndPermissions r1 = new RolesAndPermissions();
@@ -33,17 +20,13 @@ public class User {
         f1.flightScheduler();
         Scanner read = new Scanner(System.in);
         Scanner read1 = new Scanner(System.in);
-       
         System.out.println(
                 "\n\t\t\t\t\t+++++++++++++ Welcome to BAV AirLines +++++++++++++\n\nTo Further Proceed, Please enter a value.");
         System.out.println(
                 "\n***** Default Username && Password is root-root ***** Using Default Credentials will restrict you to just view the list of Passengers....\n");
         displayMainMenu();
         int desiredOption ;
-
-
         do {
-
             desiredOption = read.nextInt();
             while (desiredOption < 0 || desiredOption > 8) {
                 System.out.print("ERROR!! Please enter value between 0 - 4. Enter the value again :\t");
@@ -56,14 +39,6 @@ public class User {
                 case 4: registerAsPassenger(c1); break;
                 case 5: manualInstructions(); break;
             }
-            /*
-             * If desiredOption is 1 then call the login method.... if default credentials
-             * are used then set the permission
-             * level to standard/default where the user can just view the customer's
-             * data...if not found, then return -1, and if
-             * data is found then show the user display menu for adding, updating, deleting
-             * and searching users/customers...
-             */
             displayMainMenu();
             desiredOption = read1.nextInt();
             while (desiredOption < 0 || desiredOption > 8) {
@@ -141,8 +116,6 @@ public class User {
                     "(12) Pressing \"0\" will make you logout of the program...You can login back at anytime with your credentials...for this particular run-time... \n");
         }
     }
-    // ************************************************************ Setters &
-    // Getters ************************************************************
     private static void loginAsAdmin(RolesAndPermissions r1, Customer c1, Flight f1, FlightReservation bookingAndReserving) {
         Scanner read = new Scanner(System.in);
         Scanner read1 = new Scanner(System.in);
@@ -268,11 +241,8 @@ public class User {
             } else {
                 System.out.println(
                         "Invalid Choice...Looks like you're Robot...Entering values randomly...You've Have to login again...");
-
                 desiredOption = 0;
             }
-
-
         } while (desiredOption != 0);
     }
     private static  void loginAsPassenger(RolesAndPermissions r1 , Customer c1 ,Flight f1 , FlightReservation bookingAndReserving ){
@@ -283,7 +253,6 @@ public class User {
         System.out.print("Enter the Password : \t");
         String password = read1.nextLine();
         String[] result = r1.isPassengerRegistered(userName, password).split("-");
-
         if (Integer.parseInt(result[0]) == 1) {
             int desiredChoice;
             System.out.printf(
@@ -303,7 +272,6 @@ public class User {
                 System.out.print("Enter the desired Choice :   ");
                 desiredChoice = read.nextInt();
                 if (desiredChoice == 1) {
-                    // bookingAndReserving.displayArtWork(1);
                     f1.displayFlightSchedule();
                     System.out.print("\nEnter the desired flight number to book :\t ");
                     String flightToBeBooked = read1.nextLine();
@@ -330,7 +298,6 @@ public class User {
                         System.out.println("Action has been cancelled...");
                     }
                 } else if (desiredChoice == 4) {
-
                     f1.displayFlightSchedule();
                     f1.displayMeasurementInstructions();
                 } else if (desiredChoice == 5) {
