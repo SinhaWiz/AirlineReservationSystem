@@ -45,16 +45,7 @@ public class Flight extends FlightDistance {
 
     public void flightScheduler() {
         int numOfFlights = 15;
-        RandomGenerator r1 = new RandomGenerator();
-        for (int i = 0; i < numOfFlights; i++) {
-            String[][] chosenDestinations = r1.randomDestinations();
-            String[] distanceBetweenTheCities = calculateDistance(Double.parseDouble(chosenDestinations[0][1]), Double.parseDouble(chosenDestinations[0][2]), Double.parseDouble(chosenDestinations[1][1]), Double.parseDouble(chosenDestinations[1][2]));
-            String flightSchedule = createNewFlightsAndTime();
-            String flightNumber = r1.randomFlightNumbGen(2, 1).toUpperCase();
-            int numOfSeatsInTheFlight = r1.randomNumOfSeats();
-            String gate = r1.randomFlightNumbGen(1, 30);
-            flightList.add(new Flight(flightSchedule, flightNumber, numOfSeatsInTheFlight, chosenDestinations, distanceBetweenTheCities, gate.toUpperCase()));
-        }
+        FlightManager.generateFlightSchedule(numOfFlights);
     }
 
     void addNewCustomerToFlight(Customer customer) {
