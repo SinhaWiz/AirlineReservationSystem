@@ -8,6 +8,8 @@ public class RandomGenerator {
      final int MAX_SEATS = 500 ;
      final int MIN_SEATS = 75 ;
      final int NUM_Alphabets = 26;
+     final int MAX_ID = 1000000;
+     final int MIN_ID = 20000 ;
      private static final String[][] destinations = {
             {"Karachi", "24.871940", "66.988060"}, {"Bangkok", "13.921430", "100.595337"}, {"Jakarta", "-6.174760", "106.827072"},
             {"Islamabad", "33.607587", "73.100316"}, {"New York City", "40.642422", "-73.781749"}, {"Lahore", "31.521139", "74.406519"},
@@ -27,10 +29,10 @@ public class RandomGenerator {
     };
     public void randomIDGen() {
         Random rand = new Random();
-        String randomID = Integer.toString(rand.nextInt(1000000));
+        String randomID = Integer.toString(rand.nextInt(MAX_ID));
 
-        while (Integer.parseInt(randomID) < 20000) {
-            randomID = Integer.toString(rand.nextInt(1000000));
+        while (Integer.parseInt(randomID) < MIN_ID) {
+            randomID = Integer.toString(rand.nextInt(MAX_ID));
         }
         setRandomNum(randomID);
     }

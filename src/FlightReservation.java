@@ -107,7 +107,14 @@ public class FlightReservation implements DisplayClass {
             }
         }
     }
-
+    private Flight findFlight(String flightNo) {
+        for (Flight flight : flight.getFlightList()) {
+            if (flight.getFlightNumber().equalsIgnoreCase(flightNo)) {
+                return flight;
+            }
+        }
+        return null;
+    }
     void addNumberOfTicketsToAlreadyBookedFlight(Customer customer, int numOfTickets) {
         int newNumOfTickets = customer.numOfTicketsBookedByUser.get(flightIndexInFlightList) + numOfTickets;
         customer.numOfTicketsBookedByUser.set(flightIndexInFlightList, newNumOfTickets);

@@ -42,7 +42,6 @@ public class User {
     static void displayMainMenu() {
        MessageDisplays.displayMainMenu();
     }
-
     static void manualInstructions() {
         Scanner read = new Scanner(System.in);
         MessageDisplays.displayManualInstructions();
