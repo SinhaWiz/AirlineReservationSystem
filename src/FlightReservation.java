@@ -10,54 +10,35 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FlightReservation implements DisplayClass {
-
-    //        ************************************************************ Fields ************************************************************
     Flight flight = new Flight();
     int flightIndexInFlightList;
 
-    //        ************************************************************ Behaviours/Methods ************************************************************
-
-
-    /**
-     * Book the numOfTickets for said flight for the specified user. Update the available seats in main system by
-     * Subtracting the numOfTickets from the main system. If a new customer registers for the flight, then it adds
-     * the customer to that flight, else if the user is already added to that flight, then it just updates the
-     * numOfSeats of that flight.
-     *
-     * @param flightNo     FlightID of the flight to be booked
-     * @param numOfTickets number of tickets to be booked
-     * @param userID       userID of the user which is booking the flight
-     */
     void bookFlight(String flightNo, int numOfTickets, String userID) {
         boolean isFound = false;
-        for (Flight f1 : flight.getFlightList()) {
-            if (flightNo.equalsIgnoreCase(f1.getFlightNumber())) {
-                for (Customer customer : Customer.customerCollection) {
-                    if (userID.equals(customer.getUserID())) {
-                        isFound = true;
-                        f1.setNoOfSeatsInTheFlight(f1.getNoOfSeats() - numOfTickets);
-                        if (!f1.isCustomerAlreadyAdded(f1.getListOfRegisteredCustomersInAFlight(), customer)) {
-                            f1.addNewCustomerToFlight(customer);
-                        }
-                        if (isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser, f1)) {
-                            addNumberOfTicketsToAlreadyBookedFlight(customer, numOfTickets);
-                            if (flightIndex(flight.getFlightList(), flight) != -1) {
-                                customer.addExistingFlightToCustomerList(flightIndex(flight.getFlightList(), flight), numOfTickets);
-                            }
-                        } else {
-                            customer.addNewFlightToCustomerList(f1);
-                            addNumberOfTicketsForNewFlight(customer, numOfTickets);
-                        }
-                    break;
-                    }
-                }
-            }
-        }
-        if (!isFound) {
+        Flight selectedFlight = findFlight(flightNo);
+        if(selectedFlight == null) {
             System.out.println("Invalid Flight Number...! No flight with the  ID \"" + flightNo + "\" was found...");
-        } else {
-            System.out.printf("\n %50s You've booked %d tickets for Flight \"%5s\"...", "", numOfTickets, flightNo.toUpperCase());
+            return;
         }
+        Customer customer = CustomerManager.getCustomerById(userID);
+        if(customer == null) {
+            System.out.println("Customer Not Found...");
+            return;
+        }
+        selectedFlight.setNoOfSeatsInTheFlight(selectedFlight.getNoOfSeats()-numOfTickets);
+
+        if(!selectedFlight.isCustomerAlreadyAdded(selectedFlight.getListOfRegisteredCustomersInAFlight() ,customer))
+        {
+            selectedFlight.addNewCustomerToFlight(customer);
+        }
+        if(isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser,selectedFlight)){
+            addNumberOfTicketsForNewFlight(customer,numOfTickets);
+        }else {
+            customer.addNewFlightToCustomerList(selectedFlight);
+            addNumberOfTicketsForNewFlight(customer, numOfTickets);
+        }
+            System.out.printf("\n %50s You've booked %d tickets for Flight \"%5s\"...", "", numOfTickets, flightNo.toUpperCase());
+
     }
     void cancelFlight(String userID) {
         String flightNum = "";
