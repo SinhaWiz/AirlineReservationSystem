@@ -253,7 +253,6 @@ public class User {
         adminUserNameAndPassword[countNumOfUsers][1] = password;
         return countNumOfUsers + 1;
     }
-
     public static List<Customer> getCustomersCollection() {
         return customersCollection;
     }
