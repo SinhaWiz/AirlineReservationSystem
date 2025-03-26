@@ -3,12 +3,9 @@
  *
  *
  * */
-
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
 public class FlightReservation implements DisplayClass {
     Flight flight = new Flight();
     int flightIndexInFlightList;
@@ -41,7 +38,6 @@ public class FlightReservation implements DisplayClass {
             addNumberOfTicketsForNewFlight(customer, numOfTickets);
         }
             System.out.printf("\n %50s You've booked %d tickets for Flight \"%5s\"...", "", numOfTickets, flightNo.toUpperCase());
-
     }
     void cancelFlight(String userID) {
         String flightNum = "";
@@ -141,10 +137,7 @@ public class FlightReservation implements DisplayClass {
 
     @Override
     public void displayFlightsRegisteredByOneUser(String userID) {
-        System.out.println();
-        System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+-----------------+\n");
-        System.out.printf("| Num  | FLIGHT SCHEDULE\t\t\t   | FLIGHT NO |  Booked Tickets  | \tFROM ====>>       | \t====>> TO\t   | \t    ARRIVAL TIME       | FLIGHT TIME |  GATE  |  FLIGHT STATUS  |%n");
-        System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+-----------------+\n");
+        MessageDisplays.displayFlightRegisteredHeader();
         for (Customer customer : Customer.customerCollection) {
             List<Flight> f = customer.getFlightsRegisteredByUser();
             int size = customer.getFlightsRegisteredByUser().size();
@@ -167,9 +160,7 @@ public class FlightReservation implements DisplayClass {
     @Override
     public void displayHeaderForUsers(Flight flight, List<Customer> c) {
         System.out.printf("\n%65s Displaying Registered Customers for Flight No. \"%-6s\" %s \n\n", "+++++++++++++", flight.getFlightNumber(), "+++++++++++++");
-        System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+----------------+\n", "");
-        System.out.printf("%10s| SerialNum  |   UserID   | Passenger Names                  | Age     | EmailID\t\t       | Home Address\t\t\t     | Phone Number\t       | Booked Tickets |%n", "");
-        System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+----------------+\n", "");
+        MessageDisplays.displayUserHeader();
         int size = flight.getListOfRegisteredCustomersInAFlight().size();
         for (int i = 0; i < size; i++) {
             System.out.println(toString(i, c.get(i), flightIndex(c.get(i).flightsRegisteredByUser, flight)));
